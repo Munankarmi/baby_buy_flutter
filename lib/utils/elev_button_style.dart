@@ -1,6 +1,6 @@
 import 'dart:ffi';
 
-import 'package:baby_buy/styles/text_style.dart';
+import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
 class ElevButtonStyle extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:baby_buy/pages/category_page.dart';
 import 'package:baby_buy/pages/inside_home_page.dart';
 import 'package:baby_buy/pages/login_page.dart';
 import 'package:baby_buy/pages/product_page.dart';
-import 'package:baby_buy/styles/product_fab.dart';
+import 'package:baby_buy/utils/product_fab.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:baby_buy/pages/login_page.dart';
-import 'package:baby_buy/styles/sign_button_style.dart';
-import 'package:baby_buy/styles/text_field_style.dart';
+import 'package:baby_buy/utils/sign_button_style.dart';
+import 'package:baby_buy/utils/text_field_style.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {

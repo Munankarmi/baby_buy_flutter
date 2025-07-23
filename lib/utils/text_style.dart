@@ -5,10 +5,12 @@ class StyleText extends StatelessWidget {
   final double textSize;
   final bool textWeight;
   final Color textColor;
+  final double textSpace;
   const StyleText({
     this.textColor = Colors.black,
     this.textSize = 20,
     this.textWeight = false,
+    this.textSpace = 2,
     required this.text,
     super.key,
   });
@@ -22,7 +24,8 @@ class StyleText extends StatelessWidget {
         style: TextStyle(
           fontSize: textSize,
           fontWeight: textWeight ? FontWeight.bold : FontWeight.normal,
-          color: textColor
+          color: textColor,
+          letterSpacing: textSpace,
         ),
       ),
     );

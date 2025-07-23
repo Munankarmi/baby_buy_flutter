@@ -1,7 +1,8 @@
-import 'package:baby_buy/styles/elev_button_style.dart';
-import 'package:baby_buy/styles/sign_button_style.dart';
-import 'package:baby_buy/styles/text_field_style.dart';
-import 'package:baby_buy/styles/text_style.dart';
+import 'package:baby_buy/utils/category_tile.dart';
+import 'package:baby_buy/utils/elev_button_style.dart';
+import 'package:baby_buy/utils/sign_button_style.dart';
+import 'package:baby_buy/utils/text_field_style.dart';
+import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
 final List<List<String>> categoryListTile = [
@@ -17,31 +18,14 @@ class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlue[100],
-      body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.blue,
-        ),
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-
-          crossAxisAlignment: CrossAxisAlignment.start,
-
-          children: [
-            StyleText(text: "Category:", textColor: Colors.white),
-            // StyleText(text: categoryListTile.length[][0], textWeight: true),
-            SizedBox(height: 10),
-            Divider(thickness: 1, color: Colors.lightBlue[100]),
-            SizedBox(height: 10),
-            StyleText(text: "Description:"),
-            // Text(categoryListTile[categoryListTile.length][1]),
-            SizedBox(height: 30),
-            SignButtonStyle(text: "Edit Category", onTap: () {}),
-            SizedBox(height: 10),
-          ],
-        ),
+      body: ListView.builder(
+        itemCount: categoryListTile.length,
+        itemBuilder: (context, index) {
+          return CategoryTile(
+            categoryText: categoryListTile[index][0],
+            descriptionText: categoryListTile[index][1],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -61,6 +45,7 @@ class CategoryPage extends StatelessWidget {
                 ),
                 content: Container(
                   width: double.maxFinite,
+                  
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
