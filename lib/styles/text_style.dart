@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+
+class StyleText extends StatelessWidget {
+  final String text;
+  final double textSize;
+  final bool textWeight;
+  final Color textColor;
+  const StyleText({
+    this.textColor = Colors.black,
+    this.textSize = 20,
+    this.textWeight = false,
+    required this.text,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: textSize,
+          fontWeight: textWeight ? FontWeight.bold : FontWeight.normal,
+          color: textColor
+        ),
+      ),
+    );
+  }
+}

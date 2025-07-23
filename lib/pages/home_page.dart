@@ -1,0 +1,189 @@
+import 'package:baby_buy/pages/category_page.dart';
+import 'package:baby_buy/pages/inside_home_page.dart';
+import 'package:baby_buy/pages/login_page.dart';
+import 'package:baby_buy/pages/product_page.dart';
+import 'package:baby_buy/styles/product_fab.dart';
+import 'package:flutter/material.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int selectedIndex = 0;
+
+  final List<Widget> pages = [InsideHomePage(), CategoryPage(), ProductPage()];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blue[400],
+      appBar: AppBar(
+        title: Text("Home"),
+        centerTitle: true,
+        backgroundColor: Colors.lightBlue[600],
+        elevation: 2,
+        shadowColor: Colors.white,
+      ),
+      drawer: SafeArea(
+        child: Drawer(
+          backgroundColor: Colors.lightBlue[200],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20),
+              Center(
+                child: CircleAvatar(
+                  backgroundImage: AssetImage("lib/assets/baby_ss.webp"),
+                  radius: 80,
+                  backgroundColor: Colors.lightBlue[600],
+                ),
+              ),
+              SizedBox(height: 30),
+              Center(
+                child: Text(
+                  "Name",
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 4,
+                  ),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "Username",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                  ),
+                ),
+              ),
+              Divider(thickness: 1, color: Colors.lightBlue[800]),
+              SizedBox(height: 30),
+
+              TextButton.icon(
+                onPressed: () {
+                 currentPage(2);
+                 Navigator.pop(context);
+                },
+                label: Text(
+                  "Products",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.lightBlue[800],
+                  ),
+                ),
+                icon: Icon(
+                  Icons.account_tree_sharp,
+                  size: 50,
+                  color: Colors.lightBlue[800],
+                ),
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  currentPage(1);
+                  Navigator.pop(context);
+                },
+                label: Text(
+                  "Categories",
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.lightBlue[800],
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                icon: Icon(
+                  Icons.category,
+                  size: 50,
+                  color: Colors.lightBlue[800],
+                ),
+              ),
+              SizedBox(height: 30),
+              Divider(thickness: 1, color: Colors.lightBlue[800]),
+              SizedBox(height: 20),
+              TextButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.message,
+                  size: 50,
+                  color: Colors.lightBlue[800],
+                ),
+                label: Text(
+                  "Send SMS",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.lightBlue[800],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Divider(thickness: 1, color: Colors.lightBlue[800]),
+              SizedBox(height: 50),
+              TextButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
+                label: Text(
+                  "LogOut",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.lightBlue[800],
+                  ),
+                ),
+                icon: Icon(
+                  Icons.logout,
+                  size: 50,
+                  color: Colors.lightBlue[800],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: pages[selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        onTap: (int index) {
+          currentPage(index);
+        },
+
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, size: 40, color: Colors.black54),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category, size: 40, color: Colors.black54),
+            label: "Category",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.account_tree_sharp,
+              size: 40,
+              color: Colors.black54,
+            ),
+            label: "Product",
+          ),
+        ],
+        backgroundColor: Colors.lightBlue[600],
+      ),
+    );
+    
+  }
+  void currentPage(int index){
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+}
