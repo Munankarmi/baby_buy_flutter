@@ -1,3 +1,4 @@
+import 'package:baby_buy/utils/elev_button_style.dart';
 import 'package:baby_buy/utils/sign_button_style.dart';
 import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
@@ -26,11 +27,49 @@ class CategoryTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
-          StyleText(
-            text: "Category:",
-            textColor: Colors.white,
-            textSize: 12,
-            textWeight: true,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              StyleText(
+                text: "Category:",
+                textColor: Colors.white,
+                textSize: 12,
+                textWeight: true,
+              ),
+              IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+
+                    builder: (context) => AlertDialog(
+                      backgroundColor: Colors.blue,
+                      title: StyleText(
+                        text: "Delete Category?",
+                        textWeight: true,
+                        textSize: 20,
+                      ),
+                      content: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevButtonStyle(
+                            buttonText: " Okay ",
+                            buttonPressed: () {},
+                          ),
+
+                          ElevButtonStyle(
+                            buttonText: "Cancel",
+                            buttonPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.delete),
+              ),
+            ],
           ),
           StyleText(text: categoryText, textWeight: true),
           Divider(thickness: 1, color: Colors.lightBlue[100]),

@@ -3,6 +3,7 @@ import 'package:baby_buy/pages/inside_home_page.dart';
 import 'package:baby_buy/pages/login_page.dart';
 import 'package:baby_buy/pages/product_page.dart';
 import 'package:baby_buy/utils/product_fab.dart';
+import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.blue[400],
       appBar: AppBar(
-        title: Text("Home"),
+        title: StyleText(text: "Baby Buy", textWeight: true, textSize: 30),
         centerTitle: true,
         backgroundColor: Colors.lightBlue[600],
         elevation: 2,
@@ -68,8 +69,8 @@ class _HomePageState extends State<HomePage> {
 
               TextButton.icon(
                 onPressed: () {
-                 currentPage(2);
-                 Navigator.pop(context);
+                  currentPage(2);
+                  Navigator.pop(context);
                 },
                 label: Text(
                   "Products",
@@ -179,9 +180,9 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.lightBlue[600],
       ),
     );
-    
   }
-  void currentPage(int index){
+
+  void currentPage(int index) {
     setState(() {
       selectedIndex = index;
     });
