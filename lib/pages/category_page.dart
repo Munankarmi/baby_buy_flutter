@@ -1,15 +1,17 @@
-import 'package:baby_buy/utils/category_tile.dart';
+import 'package:baby_buy/providers/category_provider.dart';
+import 'package:baby_buy/utils/extensions.dart';
+import 'package:baby_buy/widgets/category_tile.dart';
 import 'package:baby_buy/utils/elev_button_style.dart';
 import 'package:baby_buy/utils/sign_button_style.dart';
 import 'package:baby_buy/utils/text_field_style.dart';
 import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-final List<List<String>> categoryListTile = [
-  ['Diaper', 'asdaskdjasldjsladjsd aslkdjaslkdjasld asljdslaj'],
-  ['Baby Clothes', 'asdsadsad asdsadsad kmsdfdsfdsf'],
-];
-
+// final List<List<String>> categoryListTile = [
+//   ['Diaper', 'asdaskdjasldjsladjsd aslkdjaslkdjasld asljdslaj'],
+//   ['Baby Clothes', 'asdsadsad asdsadsad kmsdfdsfdsf'],
+// ];
 class CategoryPage extends StatelessWidget {
   final categoryNameController = TextEditingController();
   final categoryDescpController = TextEditingController();
@@ -18,12 +20,17 @@ class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlue[100],
-      body: ListView.builder(
-        itemCount: categoryListTile.length,
-        itemBuilder: (context, index) {
-          return CategoryTile(
-            categoryText: categoryListTile[index][0],
-            descriptionText: categoryListTile[index][1],
+      body: Consumer<CategoryProvider>(
+        builder: (context, value, child) {
+          return ListView.builder(
+            itemCount: value.CategoryList.length,
+            itemBuilder: (context, index) {
+              return CategoryTile(
+                index: index,
+                categoryText: value.CategoryList[index][0],
+                descriptionText: value.CategoryList[index][1],
+              );
+            },
           );
         },
       ),
@@ -45,7 +52,7 @@ class CategoryPage extends StatelessWidget {
                 ),
                 content: Container(
                   width: double.maxFinite,
-                  
+
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -74,7 +81,13 @@ class CategoryPage extends StatelessWidget {
                           SizedBox(width: 30),
                           ElevButtonStyle(
                             buttonText: "  Save  ",
-                            buttonPressed: () {},
+                            buttonPressed: () {
+                              context.categoryProvider.saveCategory(
+                                categoryNameController.text,
+                                categoryDescpController.text,
+                              );
+                              Navigator.pop(context);
+                            },
                           ),
                         ],
                       ),
