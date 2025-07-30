@@ -2,9 +2,13 @@ import 'package:baby_buy/pages/category_page.dart';
 import 'package:baby_buy/pages/inside_home_page.dart';
 import 'package:baby_buy/pages/login_page.dart';
 import 'package:baby_buy/pages/product_page.dart';
+import 'package:baby_buy/providers/product_provider.dart';
+import 'package:baby_buy/utils/elev_button_style.dart';
+import 'package:baby_buy/utils/extensions.dart';
 import 'package:baby_buy/utils/product_fab.dart';
 import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,6 +24,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final imageProvider = Provider.of<ProductProvider>(context);
+    final image = imageProvider.imageFile;
     return Scaffold(
       backgroundColor: Colors.blue[400],
       appBar: AppBar(
@@ -37,10 +43,54 @@ class _HomePageState extends State<HomePage> {
             children: [
               SizedBox(height: 20),
               Center(
-                child: CircleAvatar(
-                  backgroundImage: AssetImage("lib/assets/baby_ss.webp"),
-                  radius: 80,
-                  backgroundColor: Colors.lightBlue[600],
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: StyleText(text: "Choose Image from:"),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                children: [
+                                  ElevButtonStyle(
+                                    buttonText: "Gallery",
+                                    buttonPressed: () {
+                                      context.productProvider
+                                          .pickImageFromGallery();
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  SizedBox(width: 10),
+                                  ElevButtonStyle(
+                                    buttonText: "Camera",
+                                    buttonPressed: () {
+                                      context.productProvider
+                                          .pickImageFromCamera();
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 20),
+                              ElevButtonStyle(
+                                buttonText: "Cancel",
+                                buttonPressed: () => Navigator.pop(context),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 80,
+                    backgroundColor: Colors.lightBlue[600],
+                    backgroundImage: image != null ? FileImage(image) : null,
+                    child: image == null ? Icon(Icons.person, size: 60) : null,
+                  ),
                 ),
               ),
               SizedBox(height: 30),

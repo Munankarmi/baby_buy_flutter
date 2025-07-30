@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 
 class CategoryProvider extends ChangeNotifier {
-  List CategoryList = [
+  List categoryList = [
     ['Baby Clothes', 'asdsadsad asdsadsad kmsdfdsfdsf'],
     ['Diaper', 'asdaskdjasldjsladjsd aslkdjaslkdjasld asljdslaj'],
   ];
 
-  get categoryList => CategoryList;
+  get CategoryList => categoryList;
   void saveCategory(String name, String desc) {
     CategoryList.add([name, desc]);
     notifyListeners();

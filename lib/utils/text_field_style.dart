@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class TextFieldStyle extends StatelessWidget {
   final String hintText;
   final TextEditingController textController;
+  final TextInputType kType;
   bool obsecureText;
   double textFieldSize;
   TextFieldStyle(
   {
+    this.kType =TextInputType.text,
     this.obsecureText= false,
     this.textFieldSize = 12.0,
     required this.hintText,
@@ -18,6 +20,7 @@ class TextFieldStyle extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: textController,
+      keyboardType: kType,
       obscureText: obsecureText,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: textFieldSize),

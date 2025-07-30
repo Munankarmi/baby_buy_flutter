@@ -8,10 +8,7 @@ import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// final List<List<String>> categoryListTile = [
-//   ['Diaper', 'asdaskdjasldjsladjsd aslkdjaslkdjasld asljdslaj'],
-//   ['Baby Clothes', 'asdsadsad asdsadsad kmsdfdsfdsf'],
-// ];
+
 class CategoryPage extends StatelessWidget {
   final categoryNameController = TextEditingController();
   final categoryDescpController = TextEditingController();
