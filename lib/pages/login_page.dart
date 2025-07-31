@@ -1,11 +1,14 @@
 import 'package:baby_buy/pages/home_page.dart';
 import 'package:baby_buy/pages/register_page.dart';
+import 'package:baby_buy/providers/sign_provider.dart';
+import 'package:baby_buy/utils/extensions.dart';
 import 'package:baby_buy/utils/sign_button_style.dart';
 import 'package:baby_buy/utils/text_field_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -13,9 +16,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final usernameTextController = TextEditingController();
-
   final usernamePasswordController = TextEditingController();
-
   bool checked = false;
 
   @override
@@ -69,15 +70,19 @@ class _LoginPageState extends State<LoginPage> {
 
               Divider(thickness: 1, color: Colors.white),
               SizedBox(height: 30),
-              SignButtonStyle(
-                text: "Sign-In",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
-                },
-              ),
+              Provider.of<SignProvider>(context).isLoading
+                  ? CircularProgressIndicator()
+                  : SignButtonStyle(
+                      text: "Sign-In",
+                      onTap: () {
+                        context.signProvider.signinUser(
+                          usernameTextController.text.trim(),
+                          usernamePasswordController.text.trim(),
+                          context
+                        );
+                        
+                      },
+                    ),
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "30792764859",
+    "project_id": "baby-buy-87cf3",
+    "storage_bucket": "baby-buy-87cf3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30792764859:android:17e1e5d83710259d20889e",
+        "android_client_info": {
+          "package_name": "com.example.baby_buy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5akR4AQyHdAEV-7vPgxLXRRV37NMpZRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

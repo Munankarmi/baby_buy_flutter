@@ -179,10 +179,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 50),
               TextButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
+                  context.signProvider.signUserOut();
                 },
                 label: Text(
                   "LogOut",

@@ -1,7 +1,10 @@
 import 'package:baby_buy/pages/login_page.dart';
+import 'package:baby_buy/providers/sign_provider.dart';
+import 'package:baby_buy/utils/extensions.dart';
 import 'package:baby_buy/utils/sign_button_style.dart';
 import 'package:baby_buy/utils/text_field_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
@@ -63,7 +66,20 @@ class RegisterPage extends StatelessWidget {
                   SizedBox(height: 20),
                   Divider(thickness: 1, color: Colors.white),
                   SizedBox(height: 20),
-                  SignButtonStyle(text: "Register", onTap: () {}),
+                  Provider.of<SignProvider>(context).isLoading
+                      ? CircularProgressIndicator()
+                      : SignButtonStyle(
+                          text: "Register",
+                          onTap: () {
+                            context.signProvider.registerUser(
+                              registerUsernameController.text,
+                              registerEmailController.text,
+                              registerPasswordController.text,
+                              registerConfirmPasswordController.text,
+                              context,
+                            );
+                          },
+                        ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
