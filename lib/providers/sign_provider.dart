@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 class SignProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-
+  String _userName = '';
+  String get userName => _userName;
   Future<void> signinUser(
     String userEmail,
     String userPassword,
@@ -93,9 +94,11 @@ class SignProvider extends ChangeNotifier {
           email: registerEmail,
           password: registerPassword,
         );
+        _userName = registerfullName;
+        notifyListeners();
         success(context);
       }
-    }on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (context.mounted) {
         return showErrorDialog(context, "Password didn't matched.");
       }

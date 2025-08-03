@@ -1,26 +1,55 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
 class CategoryProvider extends ChangeNotifier {
-  List categoryList = [
-    ['Baby Clothes', 'asdsadsad asdsadsad kmsdfdsfdsf'],
-    ['Diaper', 'asdaskdjasldjsladjsd aslkdjaslkdjasld asljdslaj'],
-  ];
+  List categoryList = [];
 
-  get CategoryList => categoryList;
-  void saveCategory(String name, String desc) {
-    CategoryList.add([name, desc]);
+  List get categoryListGetter => categoryList;
+  Future<void> saveCategory(String name, String descp) async {
+    final doc = {
+      'categoryName': name,
+      'categoryDescription': descp,
+      'createdAt': FieldValue.serverTimestamp(),
+    };
+
+    final docref = await FirebaseFirestore.instance
+        .collection('babyBuy-category')
+        .add(doc);
+    categoryList.add([docref.id, name, descp]);
     notifyListeners();
   }
 
-  void removeCategory(int index) {
+  Future<void> fetchCategories() async {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('babyBuy-category')
+        .orderBy('createdAt', descending: true)
+        .get();
 
-    CategoryList.remove(CategoryList[index]);
- 
+    categoryList = querySnapshot.docs.map((doc) {
+      final data = doc.data();
+      return [doc.id, data['categoryName'], data['categoryDescription']];
+    }).toList();
     notifyListeners();
   }
 
-  void editCategory(int index, String name, String descp) {
-    CategoryList[index]=[ name, descp];
+  Future<void> removeCategory(int index) async {
+    final docId = categoryList[index][0];
+    await FirebaseFirestore.instance
+        .collection('babyBuy-category')
+        .doc(docId)
+        .delete();
+    categoryList.removeAt(index);
+    notifyListeners();
+  }
+
+  Future<void> editCategory(int index, String name, String descp) async {
+    final docId = categoryList[index][0];
+    final updatedDoc = {
+      'categoryName': name,
+      'categoryDescription': descp,
+    };
+   await FirebaseFirestore.instance.collection('babyBuy-category').doc(docId).update(updatedDoc);
+    categoryList[index] = [docId, name, descp];
     notifyListeners();
   }
 }

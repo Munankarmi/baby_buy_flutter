@@ -2,11 +2,14 @@ import 'package:baby_buy/pages/category_page.dart';
 import 'package:baby_buy/pages/inside_home_page.dart';
 import 'package:baby_buy/pages/login_page.dart';
 import 'package:baby_buy/pages/product_page.dart';
+import 'package:baby_buy/pages/register_page.dart';
 import 'package:baby_buy/providers/product_provider.dart';
+import 'package:baby_buy/providers/sign_provider.dart';
 import 'package:baby_buy/utils/elev_button_style.dart';
 import 'package:baby_buy/utils/extensions.dart';
 import 'package:baby_buy/utils/product_fab.dart';
 import 'package:baby_buy/utils/text_style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +27,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userName = context.watch<SignProvider>().userName;
+    final userEmail = FirebaseAuth.instance.currentUser!;
     final imageProvider = Provider.of<ProductProvider>(context);
     final image = imageProvider.imageFile;
     return Scaffold(
@@ -96,7 +101,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 30),
               Center(
                 child: Text(
-                  "Name",
+                  userName,
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
@@ -106,7 +111,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Center(
                 child: Text(
-                  "Username",
+                  userEmail.email!,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,

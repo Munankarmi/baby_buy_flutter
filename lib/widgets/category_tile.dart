@@ -115,7 +115,7 @@ class _CategoryTileState extends State<CategoryTile> {
                     ),
                     backgroundColor: Colors.lightBlue[400],
                     title: StyleText(
-                      text: "Add Category",
+                      text: "Edit Category",
                       textWeight: true,
                       textSize: 30,
                       textColor: Colors.white,

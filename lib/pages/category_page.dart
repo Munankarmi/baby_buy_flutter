@@ -5,14 +5,30 @@ import 'package:baby_buy/utils/elev_button_style.dart';
 import 'package:baby_buy/utils/sign_button_style.dart';
 import 'package:baby_buy/utils/text_field_style.dart';
 import 'package:baby_buy/utils/text_style.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+class CategoryPage extends StatefulWidget {
+  const CategoryPage({super.key});
 
-class CategoryPage extends StatelessWidget {
+  @override
+  State<CategoryPage> createState() => _CategoryPageState();
+}
+
+class _CategoryPageState extends State<CategoryPage> {
   final categoryNameController = TextEditingController();
   final categoryDescpController = TextEditingController();
-  CategoryPage({super.key});
+  bool _isFetched = false;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isFetched) {
+      context.categoryProvider.fetchCategories();
+      _isFetched = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,12 +36,12 @@ class CategoryPage extends StatelessWidget {
       body: Consumer<CategoryProvider>(
         builder: (context, value, child) {
           return ListView.builder(
-            itemCount: value.CategoryList.length,
+            itemCount: value.categoryListGetter.length,
             itemBuilder: (context, index) {
               return CategoryTile(
                 index: index,
-                categoryText: value.CategoryList[index][0],
-                descriptionText: value.CategoryList[index][1],
+                categoryText: value.categoryListGetter[index][1],
+                descriptionText: value.categoryListGetter[index][2],
               );
             },
           );
@@ -83,6 +99,8 @@ class CategoryPage extends StatelessWidget {
                                 categoryNameController.text,
                                 categoryDescpController.text,
                               );
+                              categoryNameController.clear();
+                              categoryDescpController.clear();
                               Navigator.pop(context);
                             },
                           ),

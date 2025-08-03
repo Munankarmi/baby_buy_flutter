@@ -87,10 +87,10 @@ class _ProductFabState extends State<ProductFab> {
             return DropdownButton(
               hint: StyleText(text: "Select Category"),
               value: selectedValue,
-              items: data.CategoryList.map<DropdownMenuItem<String>>((item) {
+              items: data.categoryListGetter.map<DropdownMenuItem<String>>((item) {
                 return DropdownMenuItem<String>(
                   value: item[0],
-                  child: Text(item[0]),
+                  child: Text(item[1]),
                 );
               }).toList(),
               onChanged: (newValue) {
