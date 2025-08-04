@@ -44,11 +44,11 @@ class CategoryProvider extends ChangeNotifier {
 
   Future<void> editCategory(int index, String name, String descp) async {
     final docId = categoryList[index][0];
-    final updatedDoc = {
-      'categoryName': name,
-      'categoryDescription': descp,
-    };
-   await FirebaseFirestore.instance.collection('babyBuy-category').doc(docId).update(updatedDoc);
+    final updatedDoc = {'categoryName': name, 'categoryDescription': descp};
+    await FirebaseFirestore.instance
+        .collection('babyBuy-category')
+        .doc(docId)
+        .update(updatedDoc);
     categoryList[index] = [docId, name, descp];
     notifyListeners();
   }

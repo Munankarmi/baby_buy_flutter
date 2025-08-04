@@ -89,7 +89,7 @@ class _ProductFabState extends State<ProductFab> {
               value: selectedValue,
               items: data.categoryListGetter.map<DropdownMenuItem<String>>((item) {
                 return DropdownMenuItem<String>(
-                  value: item[0],
+                  value: item[1],
                   child: Text(item[1]),
                 );
               }).toList(),

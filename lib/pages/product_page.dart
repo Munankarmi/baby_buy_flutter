@@ -2,13 +2,29 @@ import 'dart:io';
 
 import 'package:baby_buy/providers/product_provider.dart';
 import 'package:baby_buy/utils/elev_button_style.dart';
+import 'package:baby_buy/utils/extensions.dart';
 import 'package:baby_buy/utils/product_fab.dart';
 import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
+
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  bool _isFetched = false;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isFetched) {
+      context.productProvider.fetchProduct();
+      _isFetched = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +48,7 @@ class ProductPage extends StatelessWidget {
                         Expanded(
                           child: Builder(
                             builder: (context) {
-                              final img = value.ProductList[index][0];
+                              final img = value.productListGetter[index][1];
                               Widget imageWidget;
 
                               if (img is String) {
@@ -57,7 +73,7 @@ class ProductPage extends StatelessWidget {
                           ),
                         ),
                         StyleText(
-                          text: value.productList[index][1],
+                          text: value.productList[index][2],
                           textSize: 8,
                           textWeight: true,
                         ),
@@ -68,7 +84,7 @@ class ProductPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         StyleText(
-                          text: value.productList[index][3],
+                          text: value.productList[index][4],
                           textWeight: true,
                           textSize: 16,
                         ),
@@ -79,7 +95,7 @@ class ProductPage extends StatelessWidget {
                             StyleText(
                               text:
                                   "\$ " +
-                                  value.productList[index][4].toString(),
+                                  value.productList[index][5].toString(),
                               textWeight: true,
                               textSize: 14,
                             ),
@@ -99,7 +115,7 @@ class ProductPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: StyleText(
-                            text: value.productList[index][2],
+                            text: value.productList[index][3],
                             textSize: 12,
                           ),
                         ),
@@ -115,7 +131,7 @@ class ProductPage extends StatelessWidget {
                             StyleText(
                               text:
                                   "Qty:" +
-                                  value.productList[index][5].toString(),
+                                  value.productList[index][6].toString(),
                               textWeight: true,
                               textSize: 14,
                             ),
@@ -144,7 +160,6 @@ class ProductPage extends StatelessWidget {
                             ],
                           ),
                         );
-
                       },
                       icon: Icon(Icons.delete),
                       iconSize: 40,
