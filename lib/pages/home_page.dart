@@ -1,13 +1,10 @@
 import 'package:baby_buy/pages/category_page.dart';
 import 'package:baby_buy/pages/inside_home_page.dart';
-import 'package:baby_buy/pages/login_page.dart';
 import 'package:baby_buy/pages/product_page.dart';
-import 'package:baby_buy/pages/register_page.dart';
 import 'package:baby_buy/providers/product_provider.dart';
 import 'package:baby_buy/providers/sign_provider.dart';
 import 'package:baby_buy/utils/elev_button_style.dart';
 import 'package:baby_buy/utils/extensions.dart';
-import 'package:baby_buy/utils/product_fab.dart';
 import 'package:baby_buy/utils/text_style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

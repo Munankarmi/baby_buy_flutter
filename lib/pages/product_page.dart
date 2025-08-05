@@ -51,13 +51,22 @@ class _ProductPageState extends State<ProductPage> {
                               final img = value.productListGetter[index][1];
                               Widget imageWidget;
 
-                              if (img is String) {
+                              if (img is String && img.startsWith('http')) {
+                                imageWidget = Image.network(
+                                  img,
+                                  fit: BoxFit.fill,
+                                  errorBuilder:
+                                      (context, error, StackTrace? stackTrace) {
+                                        return const Icon(Icons.broken_image);
+                                      },
+                                );
+                              } else if (img is File) {
+                                imageWidget = Image.file(img, fit: BoxFit.fill);
+                              } else if (img is String) {
                                 imageWidget = Image.asset(
                                   img,
                                   fit: BoxFit.fill,
                                 );
-                              } else if (img is File) {
-                                imageWidget = Image.file(img, fit: BoxFit.fill);
                               } else {
                                 imageWidget = const Icon(
                                   Icons.image_not_supported,

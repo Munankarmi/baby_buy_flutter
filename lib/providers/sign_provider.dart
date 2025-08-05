@@ -98,7 +98,7 @@ class SignProvider extends ChangeNotifier {
         notifyListeners();
         success(context);
       }
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       if (context.mounted) {
         return showErrorDialog(context, "Password didn't matched.");
       }

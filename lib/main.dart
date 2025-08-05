@@ -1,4 +1,3 @@
-import 'package:baby_buy/pages/home_page.dart';
 import 'package:baby_buy/providers/auth_page.dart';
 import 'package:baby_buy/providers/category_provider.dart';
 import 'package:baby_buy/providers/product_provider.dart';
@@ -11,13 +10,13 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CategoryProvider()),
         ChangeNotifierProvider(create: (context) => ProductProvider()),
-        ChangeNotifierProvider(create: (context) =>SignProvider()),
-        
+        ChangeNotifierProvider(create: (context) => SignProvider()),
       ],
       child: MyApp(),
     ),

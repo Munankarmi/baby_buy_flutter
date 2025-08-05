@@ -2,10 +2,8 @@ import 'package:baby_buy/providers/category_provider.dart';
 import 'package:baby_buy/utils/extensions.dart';
 import 'package:baby_buy/widgets/category_tile.dart';
 import 'package:baby_buy/utils/elev_button_style.dart';
-import 'package:baby_buy/utils/sign_button_style.dart';
 import 'package:baby_buy/utils/text_field_style.dart';
 import 'package:baby_buy/utils/text_style.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,14 +17,12 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   final categoryNameController = TextEditingController();
   final categoryDescpController = TextEditingController();
-  bool _isFetched = false;
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (!_isFetched) {
-      context.categoryProvider.fetchCategories();
-      _isFetched = true;
-    }
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<CategoryProvider>().fetchCategories();
+    });
   }
 
   @override

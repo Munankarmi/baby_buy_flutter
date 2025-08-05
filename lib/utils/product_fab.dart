@@ -32,6 +32,15 @@ class _ProductFabState extends State<ProductFab> {
   final fabProductQuantityController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    final categoryProvider = context.read<CategoryProvider>();
+    if (categoryProvider.categoryListGetter.isEmpty) {
+      categoryProvider.fetchCategories();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final imageProvider = Provider.of<ProductProvider>(context);
     final image = imageProvider.imageFile;
@@ -87,7 +96,9 @@ class _ProductFabState extends State<ProductFab> {
             return DropdownButton(
               hint: StyleText(text: "Select Category"),
               value: selectedValue,
-              items: data.categoryListGetter.map<DropdownMenuItem<String>>((item) {
+              items: data.categoryListGetter.map<DropdownMenuItem<String>>((
+                item,
+              ) {
                 return DropdownMenuItem<String>(
                   value: item[1],
                   child: Text(item[1]),
@@ -127,7 +138,7 @@ class _ProductFabState extends State<ProductFab> {
               int.tryParse(fabProductPriceController.text) ?? 0,
               int.tryParse(fabProductQuantityController.text) ?? 0,
             );
-            Provider.of<ProductProvider>(context, listen: false).clearImge();
+            Provider.of<ProductProvider>(context, listen: false).clearImage();
             fabProductTextController.clear();
             fabProductDescpController.clear();
             fabProductDescpController.clear();
@@ -141,7 +152,7 @@ class _ProductFabState extends State<ProductFab> {
           buttonText: "Cancel",
           buttonPressed: () {
             Navigator.pop(context);
-            Provider.of<ProductProvider>(context, listen: false).clearImge();
+            Provider.of<ProductProvider>(context, listen: false).clearImage();
           },
         ),
       ],

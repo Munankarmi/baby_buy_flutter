@@ -1,4 +1,3 @@
-import 'package:baby_buy/pages/home_page.dart';
 import 'package:baby_buy/pages/register_page.dart';
 import 'package:baby_buy/providers/sign_provider.dart';
 import 'package:baby_buy/utils/extensions.dart';

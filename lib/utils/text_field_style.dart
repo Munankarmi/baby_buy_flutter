@@ -4,12 +4,11 @@ class TextFieldStyle extends StatelessWidget {
   final String hintText;
   final TextEditingController textController;
   final TextInputType kType;
-  bool obsecureText;
-  double textFieldSize;
-  TextFieldStyle(
-  {
-    this.kType =TextInputType.text,
-    this.obsecureText= false,
+  final bool obsecureText;
+  final double textFieldSize;
+  const TextFieldStyle({
+    this.kType = TextInputType.text,
+    this.obsecureText = false,
     this.textFieldSize = 12.0,
     required this.hintText,
     required this.textController,
