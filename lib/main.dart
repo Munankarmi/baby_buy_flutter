@@ -1,8 +1,10 @@
 import 'package:baby_buy/providers/auth_page.dart';
 import 'package:baby_buy/providers/category_provider.dart';
+import 'package:baby_buy/providers/home_page_provider.dart';
 import 'package:baby_buy/providers/product_provider.dart';
 import 'package:baby_buy/providers/sign_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -17,6 +19,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => CategoryProvider()),
         ChangeNotifierProvider(create: (context) => ProductProvider()),
         ChangeNotifierProvider(create: (context) => SignProvider()),
+        ChangeNotifierProvider(create: (context) => HomePageProvider()),
       ],
       child: MyApp(),
     ),

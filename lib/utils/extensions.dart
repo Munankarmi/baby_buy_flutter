@@ -1,4 +1,5 @@
 import 'package:baby_buy/providers/category_provider.dart';
+import 'package:baby_buy/providers/home_page_provider.dart';
 import 'package:baby_buy/providers/product_provider.dart';
 import 'package:baby_buy/providers/sign_provider.dart';
 import 'package:flutter/material.dart';
@@ -11,4 +12,6 @@ extension Providers on BuildContext {
       Provider.of<ProductProvider>(this, listen: false);
   SignProvider get signProvider =>
       Provider.of<SignProvider>(this, listen: false);
+  HomePageProvider get homePageProvider =>
+      Provider.of<HomePageProvider>(this, listen: false);
 }
