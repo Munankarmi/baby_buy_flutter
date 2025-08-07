@@ -201,6 +201,7 @@ class ProductProvider extends ChangeNotifier {
     String cName,
     int price,
     int qty,
+    bool checkBox,
   ) async {
     String? imageUrl;
 
@@ -227,6 +228,7 @@ class ProductProvider extends ChangeNotifier {
       'category': cName,
       'price': price,
       'qty': qty,
+      'checkBox': false,
       'createdAt': FieldValue.serverTimestamp(),
     };
 
@@ -235,7 +237,7 @@ class ProductProvider extends ChangeNotifier {
           .collection('babyBuy-products')
           .add(doc);
       
-      productList.add([docref.id, imageUrl, pName, descp, cName, price, qty]);
+      productList.add([docref.id, imageUrl, pName, descp, cName, price, qty, checkBox]);
       notifyListeners();
     } catch (e) {
       print('Error adding product to Firestore: $e');
@@ -244,42 +246,44 @@ class ProductProvider extends ChangeNotifier {
   }
 
   // Alternative method to add product with pre-uploaded Cloudinary URL
-  Future<void> addProductWithCloudinaryImage(
-    String pName,
-    String descp,
-    String cName,
-    int price,
-    int qty,
-  ) async {
-    // First upload the image to Cloudinary
-    String? imageUrl = await uploadImageToCloudinary();
+  // Future<void> addProductWithCloudinaryImage(
+  //   String pName,
+  //   String descp,
+  //   String cName,
+  //   int price,
+  //   int qty,
+  //   bool checkBox,
+  // ) async {
+  //   // First upload the image to Cloudinary
+  //   String? imageUrl = await uploadImageToCloudinary();
     
-    if (imageUrl == null) {
-      throw Exception('Failed to upload image to Cloudinary');
-    }
+  //   if (imageUrl == null) {
+  //     throw Exception('Failed to upload image to Cloudinary');
+  //   }
 
-    final doc = {
-      'image': imageUrl,
-      'name': pName,
-      'descp': descp,
-      'category': cName,
-      'price': price,
-      'qty': qty,
-      'createdAt': FieldValue.serverTimestamp(),
-    };
+  //   final doc = {
+  //     'image': imageUrl,
+  //     'name': pName,
+  //     'descp': descp,
+  //     'category': cName,
+  //     'price': price,
+  //     'qty': qty,
+  //     'checkBox': false,
+  //     'createdAt': FieldValue.serverTimestamp(),
+  //   };
 
-    try {
-      final docref = await FirebaseFirestore.instance
-          .collection('babyBuy-products')
-          .add(doc);
+  //   try {
+  //     final docref = await FirebaseFirestore.instance
+  //         .collection('babyBuy-products')
+  //         .add(doc);
       
-      productList.add([docref.id, imageUrl, pName, descp, cName, price, qty]);
-      notifyListeners();
-    } catch (e) {
-      print('Error adding product to Firestore: $e');
-      throw e;
-    }
-  }
+  //     productList.add([docref.id, imageUrl, pName, descp, cName, price, qty, checkBox]);
+  //     notifyListeners();
+  //   } catch (e) {
+  //     print('Error adding product to Firestore: $e');
+  //     throw e;
+  //   }
+  // }
 
   Future<void> fetchProduct() async {
     try {
@@ -298,6 +302,7 @@ class ProductProvider extends ChangeNotifier {
           data['category'],
           data['price'],
           data['qty'],
+          data['checkBox'],
         ];
       }).toList();
       notifyListeners();

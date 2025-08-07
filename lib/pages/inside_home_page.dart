@@ -1,3 +1,4 @@
+import 'package:baby_buy/pages/purchased_products.dart';
 import 'package:baby_buy/providers/home_page_provider.dart';
 import 'package:baby_buy/providers/product_provider.dart';
 import 'package:baby_buy/utils/text_style.dart';
@@ -12,9 +13,7 @@ class InsideHomePage extends StatefulWidget {
 }
 
 class _InsideHomePageState extends State<InsideHomePage> {
-  bool onPurchased = false;
   bool _isFetched = false;
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -105,18 +104,31 @@ class _InsideHomePageState extends State<InsideHomePage> {
                         Column(
                           children: [
                             Checkbox(
-                              value: onPurchased,
-                              onChanged: (value) {
+                              value: productProvier.productListGetter[index][7],
+                              onChanged: (newValue) {
                                 setState(() {
-                                  onPurchased = value!;
+                                  productProvier.productListGetter[index][7] =
+                                      newValue!;
+                                  if (newValue == true) {
+                                    value.addToPurchasedList(
+                                      productProvier.productListGetter[index],
+                                    );
+                                  } else {
+                                    String itemId = productProvier
+                                        .productListGetter[index][0];
+                                    value.removeFromPurchasedList(itemId);
+                                  }
                                 });
+                                print(value.purchasedList);
                               },
                               checkColor: Colors.blueGrey,
                               activeColor: Colors.green,
                             ),
                             IconButton(
                               icon: Icon(Icons.delete),
-                              onPressed: () {},
+                              onPressed: () {
+                                productProvier.deleteProduct(index);
+                              },
                             ),
                           ],
                         ),
@@ -128,6 +140,17 @@ class _InsideHomePageState extends State<InsideHomePage> {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return PurchasedProducts();
+            },
+          );
+        },
+        child: Icon(Icons.card_travel),
       ),
     );
   }

@@ -137,6 +137,7 @@ class _ProductFabState extends State<ProductFab> {
               selectedValue ?? "Unknown",
               int.tryParse(fabProductPriceController.text) ?? 0,
               int.tryParse(fabProductQuantityController.text) ?? 0,
+              false,
             );
             Provider.of<ProductProvider>(context, listen: false).clearImage();
             fabProductTextController.clear();

@@ -103,8 +103,7 @@ class _ProductPageState extends State<ProductPage> {
                           children: [
                             StyleText(
                               text:
-                                  "\$ " +
-                                  value.productList[index][5].toString(),
+                                  "\$ ${value.productList[index][5].toString()}",
                               textWeight: true,
                               textSize: 14,
                             ),
@@ -139,8 +138,7 @@ class _ProductPageState extends State<ProductPage> {
                             // ),
                             StyleText(
                               text:
-                                  "Qty:" +
-                                  value.productList[index][6].toString(),
+                                  "Qty: ${value.productList[index][6].toString()}",
                               textWeight: true,
                               textSize: 14,
                             ),
