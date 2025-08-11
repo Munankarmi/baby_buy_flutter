@@ -7,10 +7,10 @@ class StyleText extends StatelessWidget {
   final Color textColor;
   final double textSpace;
   const StyleText({
-    this.textColor = Colors.black,
+    this.textColor = Colors.white,
     this.textSize = 20,
     this.textWeight = false,
-    this.textSpace = 2,
+    this.textSpace = 1,
     required this.text,
     super.key,
   });

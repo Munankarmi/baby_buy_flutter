@@ -18,20 +18,23 @@ class TextFieldStyle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      
       controller: textController,
       keyboardType: kType,
       obscureText: obsecureText,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: textFieldSize),
+        contentPadding: EdgeInsets.symmetric(vertical: textFieldSize, horizontal: 8),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: BorderSide(color: Colors.black),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
         ),
-        fillColor: Colors.lightBlue[200],
+        fillColor: Colors.white,
         filled: true,
         hintText: hintText,
+        
+        
       ),
     );
   }

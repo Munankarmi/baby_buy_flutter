@@ -1,10 +1,9 @@
-import 'package:baby_buy/providers/auth_page.dart';
+import 'package:baby_buy/pages/splash_screen.dart';
 import 'package:baby_buy/providers/category_provider.dart';
 import 'package:baby_buy/providers/home_page_provider.dart';
 import 'package:baby_buy/providers/product_provider.dart';
 import 'package:baby_buy/providers/sign_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -31,6 +30,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: AuthPage());
+    return MaterialApp(home: SplashScreen());
   }
 }

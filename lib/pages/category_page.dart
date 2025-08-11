@@ -28,7 +28,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[100],
+      backgroundColor: Colors.white,
       body: Consumer<CategoryProvider>(
         builder: (context, value, child) {
           return ListView.builder(
@@ -50,18 +50,18 @@ class _CategoryPageState extends State<CategoryPage> {
             builder: (context) {
               return AlertDialog(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(26),
                 ),
-                backgroundColor: Colors.lightBlue[400],
+                backgroundColor: Colors.grey,
                 title: StyleText(
                   text: "Add Category",
                   textWeight: true,
                   textSize: 30,
-                  textColor: Colors.white,
+                  textColor: Colors.black,
+                  textSpace: 1,
                 ),
-                content: Container(
+                content: SizedBox(
                   width: double.maxFinite,
-
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -75,7 +75,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         textController: categoryDescpController,
                         textFieldSize: 30,
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -109,8 +109,8 @@ class _CategoryPageState extends State<CategoryPage> {
             },
           );
         },
-        backgroundColor: Colors.lightBlue[400],
-        child: Icon(Icons.add),
+        backgroundColor: Colors.black,
+        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }

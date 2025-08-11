@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PurchasedProducts extends StatefulWidget {
- const PurchasedProducts({super.key});
+  const PurchasedProducts({super.key});
 
   @override
   State<PurchasedProducts> createState() => _PurchasedProductsState();
@@ -28,6 +28,7 @@ class _PurchasedProductsState extends State<PurchasedProducts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Consumer<HomePageProvider>(
         builder: (context, value, child) {
           return ListView.builder(
@@ -36,7 +37,7 @@ class _PurchasedProductsState extends State<PurchasedProducts> {
               return IntrinsicHeight(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.blueGrey,
+                    color: Colors.black87,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   margin: EdgeInsets.all(8),
@@ -46,12 +47,23 @@ class _PurchasedProductsState extends State<PurchasedProducts> {
                     children: [
                       Center(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                              child: CircleAvatar(radius: 40, backgroundImage: value.getImageProvider(value.purchasedList[index]['data'][1])),
+                              child: CircleAvatar(
+                                radius: 40,
+                                backgroundImage: value.getImageProvider(
+                                  value.purchasedList[index]['data'][1],
+                                ),
+                              ),
                             ),
-                            StyleText(text: value.purchasedList[index]['data'][2]),
+                            StyleText(
+                              text: value.purchasedList[index]['data'][2],
+                              textWeight: true,
+                              textSpace: 1,
+                               textColor: Colors.white,
+                            ),
                           ],
                         ),
                       ),
@@ -60,13 +72,16 @@ class _PurchasedProductsState extends State<PurchasedProducts> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            StyleText(text: value.purchasedList[index]['data'][4]),
                             StyleText(
-                              text:
-                                  value.purchasedList[index]['data'][3]
-                                ,
+                              text: value.purchasedList[index]['data'][4],
+                              textWeight: true,
+                              textColor: Colors.white,
+                            ),
+                            StyleText(
+                              text: value.purchasedList[index]['data'][3],
                               textSize: 12,
                               textSpace: 1,
+                              textColor: Colors.white,
                             ),
                           ],
                         ),
@@ -75,13 +90,30 @@ class _PurchasedProductsState extends State<PurchasedProducts> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          StyleText(text: value.purchasedList[index]['data'][5].toString()),
-                          StyleText(text: value.purchasedList[index]['data'][6].toString()),
+                          StyleText(
+                            text:
+                                "\$ ${value.purchasedList[index]['data'][5].toString()}",
+                                textSpace: 0,
+                                textSize: 16,
+                                textWeight: true,
+                          ),
+                          StyleText(
+                            text:
+                                "Qty: ${value.purchasedList[index]['data'][6].toString()}",
+                                textSize: 16,
+                                textWeight: true,
+                          ),
                         ],
                       ),
-                      IconButton(icon: Icon(Icons.delete),onPressed: () {
-                        value.removeFromPurchasedList(value.purchasedList[index]['data'][0]);
-                      },),
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        color: Colors.white,
+                        onPressed: () {
+                          value.removeFromPurchasedList(
+                            value.purchasedList[index]['data'][0],
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),

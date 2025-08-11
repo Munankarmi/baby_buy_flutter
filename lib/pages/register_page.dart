@@ -15,96 +15,89 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.white,
       body: Center(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Image.asset(
-                    "lib/assets/baby_ss.webp",
-                    height: 100,
-                    width: 100,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.asset("lib/assets/baby_ss.webp", height: 150, width: 150),
+                SizedBox(height: 20),
+                Text(
+                  "Register Account",
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    "Register",
-                    style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 4,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextFieldStyle(
-                    hintText: "Username",
-                    obsecureText: false,
-                    textController: registerUsernameController,
-                  ),
-                  SizedBox(height: 20),
-                  TextFieldStyle(
-                    hintText: "Email",
-                    obsecureText: false,
-                    textController: registerEmailController,
-                  ),
-                  SizedBox(height: 20),
+                ),
+                SizedBox(height: 20),
+                TextFieldStyle(
+                  hintText: "Username",
+                  obsecureText: false,
+                  textController: registerUsernameController,
+                ),
+                SizedBox(height: 20),
+                TextFieldStyle(
+                  hintText: "Email",
+                  obsecureText: false,
+                  textController: registerEmailController,
+                ),
+                SizedBox(height: 20),
 
-                  TextFieldStyle(
-                    hintText: "Password",
-                    obsecureText: true,
-                    textController: registerPasswordController,
-                  ),
-                  SizedBox(height: 20),
+                TextFieldStyle(
+                  hintText: "Password",
+                  obsecureText: true,
+                  textController: registerPasswordController,
+                ),
+                SizedBox(height: 20),
 
-                  TextFieldStyle(
-                    hintText: "Confirm-Password",
-                    obsecureText: true,
-                    textController: registerConfirmPasswordController,
-                  ),
-                  SizedBox(height: 20),
-                  Divider(thickness: 1, color: Colors.white),
-                  SizedBox(height: 20),
-                  Provider.of<SignProvider>(context).isLoading
-                      ? CircularProgressIndicator()
-                      : SignButtonStyle(
-                          text: "Register",
-                          onTap: () {
-                            context.signProvider.registerUser(
-                              registerUsernameController.text,
-                              registerEmailController.text,
-                              registerPasswordController.text,
-                              registerConfirmPasswordController.text,
-                              context,
-                            );
-                          },
-                        ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text("Already have an Account?"),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
+                TextFieldStyle(
+                  hintText: "Confirm-Password",
+                  obsecureText: true,
+                  textController: registerConfirmPasswordController,
+                ),
+                SizedBox(height: 40),
+                Divider(thickness: 1, color: Colors.black),
+                SizedBox(height: 30),
+                Provider.of<SignProvider>(context).isLoading
+                    ? CircularProgressIndicator(color: Colors.black,)
+                    : SignButtonStyle(
+                        text: "Register",
+                        onTap: () {
+                          context.signProvider.registerUser(
+                            registerUsernameController.text,
+                            registerEmailController.text,
+                            registerPasswordController.text,
+                            registerConfirmPasswordController.text,
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(),
-                            ),
                           );
                         },
-                        child: Text(
-                          "LogIn",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.lightBlue[200],
-                          ),
+                      ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Already have an Account?"),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      child: Text(
+                        "LogIn",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),

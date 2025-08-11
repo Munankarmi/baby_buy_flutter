@@ -3,6 +3,7 @@ import 'package:baby_buy/providers/sign_provider.dart';
 import 'package:baby_buy/utils/extensions.dart';
 import 'package:baby_buy/utils/sign_button_style.dart';
 import 'package:baby_buy/utils/text_field_style.dart';
+import 'package:baby_buy/utils/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -31,17 +32,17 @@ class _LoginPageState extends State<LoginPage> {
               Image.asset("lib/assets/baby_ss.webp", width: 150, height: 150),
               SizedBox(height: 30),
               Text(
-                "LogIn",
+                "Login Account",
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 4,
+                  letterSpacing: 2,
                 ),
               ),
               SizedBox(height: 30),
 
               TextFieldStyle(
-                hintText: "Username",
+                hintText: "Email or Username",
                 obsecureText: false,
                 textController: usernameTextController,
               ),
@@ -61,25 +62,31 @@ class _LoginPageState extends State<LoginPage> {
                         checked = value!;
                       });
                     },
+                    activeColor: Colors.black,
                   ),
-                  Text("Remember me"),
+                  StyleText(
+                    text: "Remember me",
+                    textSpace: 0,
+                    textSize: 16,
+                    textWeight: true,
+                    textColor: Colors.black,
+                  ),
                 ],
               ),
               SizedBox(height: 15),
 
-              Divider(thickness: 1, color: Colors.white),
+              Divider(thickness: 1, color: Colors.black),
               SizedBox(height: 30),
               Provider.of<SignProvider>(context).isLoading
-                  ? CircularProgressIndicator()
+                  ? CircularProgressIndicator(color: Colors.black,)
                   : SignButtonStyle(
                       text: "Sign-In",
                       onTap: () {
                         context.signProvider.signinUser(
                           usernameTextController.text.trim(),
                           usernamePasswordController.text.trim(),
-                          context
+                          context,
                         );
-                        
                       },
                     ),
               SizedBox(height: 20),
@@ -97,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       "Register",
                       style: TextStyle(
-                        color: Colors.lightBlue[200],
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

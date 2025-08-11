@@ -48,6 +48,7 @@ class _ProductFabState extends State<ProductFab> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleAvatar(
+          backgroundColor: Colors.white70,
           radius: 80,
           backgroundImage: image != null ? FileImage(image) : null,
           child: imageProvider.imageFile == null
@@ -94,14 +95,14 @@ class _ProductFabState extends State<ProductFab> {
         Consumer<CategoryProvider>(
           builder: (context, data, child) {
             return DropdownButton(
-              hint: StyleText(text: "Select Category"),
+              hint: StyleText(text: "Select Category", textColor: Colors.black,),
               value: selectedValue,
               items: data.categoryListGetter.map<DropdownMenuItem<String>>((
                 item,
               ) {
                 return DropdownMenuItem<String>(
                   value: item[1],
-                  child: Text(item[1]),
+                  child: StyleText(text: item[1], textWeight: true, textSpace: 0,textColor: Colors.black,),
                 );
               }).toList(),
               onChanged: (newValue) {
@@ -109,6 +110,7 @@ class _ProductFabState extends State<ProductFab> {
                   selectedValue = newValue!;
                 });
               },
+              dropdownColor: Colors.white,
             );
           },
         ),

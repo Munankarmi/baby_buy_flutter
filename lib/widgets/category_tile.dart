@@ -24,7 +24,7 @@ class _CategoryTileState extends State<CategoryTile> {
   final categoryNameController = TextEditingController();
   final categoryDescpController = TextEditingController();
 
-@override
+  @override
   void initState() {
     super.initState();
     categoryNameController.text = widget.categoryText;
@@ -35,10 +35,10 @@ class _CategoryTileState extends State<CategoryTile> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.lightBlue[600],
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.black87,
       ),
-      padding: EdgeInsets.all(2),
+      padding: EdgeInsets.all(8),
       margin: EdgeInsets.all(10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -59,13 +59,14 @@ class _CategoryTileState extends State<CategoryTile> {
                 onPressed: () {
                   showDialog(
                     context: context,
-
                     builder: (context) => AlertDialog(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.grey,
                       title: StyleText(
                         text: "Delete Category?",
                         textWeight: true,
                         textSize: 20,
+                        textColor: Colors.black,
+                        textSpace: 1,
                       ),
                       content: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,7 +74,9 @@ class _CategoryTileState extends State<CategoryTile> {
                           ElevButtonStyle(
                             buttonText: " Okay ",
                             buttonPressed: () {
-                              context.categoryProvider.removeCategory(widget.index);
+                              context.categoryProvider.removeCategory(
+                                widget.index,
+                              );
                               Navigator.pop(context);
                             },
                           ),
@@ -89,12 +92,12 @@ class _CategoryTileState extends State<CategoryTile> {
                     ),
                   );
                 },
-                icon: Icon(Icons.delete),
+                icon: Icon(Icons.delete, color: Colors.white),
               ),
             ],
           ),
           StyleText(text: widget.categoryText, textWeight: true),
-          Divider(thickness: 1, color: Colors.lightBlue[100]),
+          Divider(thickness: 1, color: Colors.white),
           StyleText(
             text: "Description:",
             textColor: Colors.white,
@@ -113,22 +116,21 @@ class _CategoryTileState extends State<CategoryTile> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    backgroundColor: Colors.lightBlue[400],
+                    backgroundColor: Colors.grey,
                     title: StyleText(
                       text: "Edit Category",
                       textWeight: true,
                       textSize: 30,
-                      textColor: Colors.white,
+                      textColor: Colors.black,
                     ),
-                    content: Container(
+                    content: SizedBox(
                       width: double.maxFinite,
-
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           TextFieldStyle(
                             hintText: "Category Name",
-                            textController:categoryNameController,
+                            textController: categoryNameController,
                           ),
                           SizedBox(height: 10),
                           TextFieldStyle(
@@ -136,7 +138,7 @@ class _CategoryTileState extends State<CategoryTile> {
                             textController: categoryDescpController,
                             textFieldSize: 30,
                           ),
-                          SizedBox(height: 40),
+                          SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -144,7 +146,6 @@ class _CategoryTileState extends State<CategoryTile> {
                                 buttonText: "Cancel",
                                 buttonPressed: () {
                                   Navigator.pop(context);
-                                  
                                 },
                               ),
                               SizedBox(width: 30),

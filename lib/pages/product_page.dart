@@ -29,7 +29,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[100],
+      backgroundColor: Colors.white,
       body: Consumer<ProductProvider>(
         builder: (context, value, child) {
           return ListView.builder(
@@ -39,11 +39,12 @@ class _ProductPageState extends State<ProductPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.blueAccent,
+                    color: Colors.black87,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: ListTile(
                     leading: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
                           child: Builder(
@@ -81,10 +82,12 @@ class _ProductPageState extends State<ProductPage> {
                             },
                           ),
                         ),
-                        StyleText(
-                          text: value.productList[index][2],
-                          textSize: 8,
-                          textWeight: true,
+                        Expanded(
+                          child: StyleText(
+                            text: value.productList[index][2],
+                            textSize: 16,
+                            textWeight: true,
+                          ),
                         ),
                       ],
                     ),
@@ -106,6 +109,7 @@ class _ProductPageState extends State<ProductPage> {
                                   "\$ ${value.productList[index][5].toString()}",
                               textWeight: true,
                               textSize: 14,
+                              textSpace: 0,
                             ),
                             // StyleText(
                             //   text: "Qty:" + productList[index][4].toString(),
@@ -151,15 +155,17 @@ class _ProductPageState extends State<ProductPage> {
                         showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                            title: StyleText(text: "Delete Product?"),
+                            backgroundColor: Colors.grey,
+                            title: StyleText(text: "Delete Product?", textColor: Colors.black, textWeight: true, textSpace: 1,),
                             actions: [
                               ElevButtonStyle(
-                                buttonText: "Okay",
+                                buttonText: " Okay ",
                                 buttonPressed: () {
                                   value.deleteProduct(index);
                                   Navigator.pop(context);
                                 },
                               ),
+                              SizedBox(width: 16,),
                               ElevButtonStyle(
                                 buttonText: "Cancel",
                                 buttonPressed: () => Navigator.pop(context),
@@ -168,8 +174,8 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         );
                       },
-                      icon: Icon(Icons.delete),
-                      iconSize: 40,
+                      icon: Icon(Icons.delete, color: Colors.white,),
+                      iconSize: 30,
                     ),
                   ),
                 ),
@@ -183,7 +189,7 @@ class _ProductPageState extends State<ProductPage> {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
-            backgroundColor: Colors.lightBlue[400],
+            backgroundColor: Colors.grey,
             builder: (context) {
               return Padding(
                 padding: EdgeInsetsGeometry.all(20),
@@ -192,8 +198,8 @@ class _ProductPageState extends State<ProductPage> {
             },
           );
         },
-        backgroundColor: Colors.lightBlue[400],
-        child: Icon(Icons.add),
+        backgroundColor: Colors.black,
+        child: Icon(Icons.add, color: Colors.white,),
       ),
     );
   }

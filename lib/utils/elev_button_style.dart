@@ -18,12 +18,16 @@ class ElevButtonStyle extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.all(8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        backgroundColor: Colors.black,
+        shadowColor: Colors.white,
+        overlayColor: Colors.white,
       ),
       child: StyleText(
         text: buttonText,
         textWeight: true,
         textSize: 20,
-        textColor: Colors.blue,
+        textColor: Colors.white,
+        textSpace: 1,
       ),
     );
   }

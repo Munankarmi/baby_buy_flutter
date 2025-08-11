@@ -13,7 +13,7 @@ class SignButtonStyle extends StatelessWidget {
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-          color: Colors.lightBlue[200],
+          color: Colors.black,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
