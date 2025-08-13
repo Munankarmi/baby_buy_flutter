@@ -15,6 +15,20 @@ class SignButtonStyle extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.white70,
+              offset: Offset(2, 2),
+              blurRadius: 4,
+              spreadRadius: 1
+            ),
+            BoxShadow(
+              color: Colors.white,
+              offset: Offset(-2, -2),
+              blurRadius: 2,
+              spreadRadius: 1
+            ),
+          ]
         ),
         child: Center(
           child: Text(

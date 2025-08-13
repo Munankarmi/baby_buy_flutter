@@ -39,6 +39,20 @@ class _InsideHomePageState extends State<InsideHomePage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: Colors.black87,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade500,
+                        offset: Offset(2, 2),
+                        blurRadius: 2,
+                        spreadRadius: 1,
+                      ),
+                      BoxShadow(
+                        color: Colors.lightBlueAccent,
+                        offset: Offset(-2, -2),
+                        blurRadius: 1,
+                        spreadRadius: 1
+                      ),
+                    ],
                   ),
 
                   margin: EdgeInsets.all(8),
@@ -188,12 +202,12 @@ class _InsideHomePageState extends State<InsideHomePage> {
                               },
                               icon: Icon(
                                 Icons.add_shopping_cart,
-                                color: Colors.white,
+                                color: Colors.lightBlueAccent,
                               ),
                             ),
 
                             IconButton(
-                              icon: Icon(Icons.delete, color: Colors.white),
+                              icon: Icon(Icons.delete, color: Colors.lightBlueAccent),
                               onPressed: () {
                                 productProvier.deleteProduct(index);
                               },
@@ -219,7 +233,9 @@ class _InsideHomePageState extends State<InsideHomePage> {
           );
         },
         backgroundColor: Colors.black,
-        child: Icon(Icons.card_travel, color: Colors.white),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(12),
+        side: BorderSide(color: Colors.white,width: 2)),
+        child: Icon(Icons.card_travel, color: Colors.lightBlueAccent),
       ),
     );
   }

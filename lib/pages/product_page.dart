@@ -38,7 +38,22 @@ class _ProductPageState extends State<ProductPage> {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
+                
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade500,
+                        offset: Offset(2, 2),
+                        blurRadius: 2,
+                        spreadRadius: 1
+                      ),
+                      BoxShadow(
+                        color: Colors.lightBlueAccent,
+                        offset: Offset(-2, -2),
+                        blurRadius: 2, 
+                        spreadRadius: 1
+                      )
+                    ],
                     color: Colors.black87,
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -174,7 +189,7 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         );
                       },
-                      icon: Icon(Icons.delete, color: Colors.white,),
+                      icon: Icon(Icons.delete, color: Colors.lightBlueAccent,),
                       iconSize: 30,
                     ),
                   ),
@@ -199,7 +214,11 @@ class _ProductPageState extends State<ProductPage> {
           );
         },
         backgroundColor: Colors.black,
-        child: Icon(Icons.add, color: Colors.white,),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: Colors.white, width: 2)
+        ),
+        child: Icon(Icons.add, color: Colors.lightBlueAccent,),
       ),
     );
   }

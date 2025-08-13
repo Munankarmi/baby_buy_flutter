@@ -1,4 +1,4 @@
-import 'package:baby_buy/pages/login_page.dart';
+import 'package:baby_buy/pages/home_page.dart';
 import 'package:baby_buy/utils/elev_button_style.dart';
 import 'package:baby_buy/utils/text_style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -64,6 +64,7 @@ class SignProvider extends ChangeNotifier {
         return AlertDialog(
           title: StyleText(text: "LogIn Error"),
           content: StyleText(text: message),
+          backgroundColor: Colors.grey,
           actions: [
             ElevButtonStyle(
               buttonText: "Okay",
@@ -113,14 +114,16 @@ class SignProvider extends ChangeNotifier {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: StyleText(text: "User created Successfully"),
+          backgroundColor: Colors.grey,
+          title: StyleText(
+            text: "User created Successfully",
+            textColor: Colors.black,
+            textWeight: true,
+          ),
           content: ElevButtonStyle(
             buttonText: "Okay",
             buttonPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
         );

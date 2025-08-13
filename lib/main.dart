@@ -21,7 +21,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => HomePageProvider()),
       ],
       child: MyApp(),
-    ),
+    ),  
   );
 }
 

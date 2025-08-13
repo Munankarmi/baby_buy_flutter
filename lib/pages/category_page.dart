@@ -28,7 +28,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[300],
       body: Consumer<CategoryProvider>(
         builder: (context, value, child) {
           return ListView.builder(
@@ -109,8 +109,13 @@ class _CategoryPageState extends State<CategoryPage> {
             },
           );
         },
-        backgroundColor: Colors.black,
-        child: Icon(Icons.add, color: Colors.white),
+        backgroundColor: Colors.black87,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(12),
+          side: BorderSide(color: Colors.white, width: 2),
+        
+        ),
+        child: Icon(Icons.add, color: Colors.lightBlueAccent),
       ),
     );
   }

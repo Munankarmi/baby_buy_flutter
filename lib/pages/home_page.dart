@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.white,
+        selectedItemColor: Colors.lightBlueAccent[100],
         unselectedItemColor: Colors.grey,
         currentIndex: selectedIndex,
         onTap: (int index) {

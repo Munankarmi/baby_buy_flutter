@@ -39,6 +39,20 @@ class _PurchasedProductsState extends State<PurchasedProducts> {
                   decoration: BoxDecoration(
                     color: Colors.black87,
                     borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade500,
+                        offset: Offset(2, 2),
+                        blurRadius: 2,
+                        spreadRadius: 1,
+                      ),
+                      BoxShadow(
+                        color: Colors.lightBlueAccent,
+                        offset: Offset(-2, -2),
+                        blurRadius: 2,
+                        spreadRadius: 1,
+                      ),
+                    ],
                   ),
                   margin: EdgeInsets.all(8),
                   child: Row(
@@ -62,7 +76,7 @@ class _PurchasedProductsState extends State<PurchasedProducts> {
                               text: value.purchasedList[index]['data'][2],
                               textWeight: true,
                               textSpace: 1,
-                               textColor: Colors.white,
+                              textColor: Colors.white,
                             ),
                           ],
                         ),
@@ -93,21 +107,21 @@ class _PurchasedProductsState extends State<PurchasedProducts> {
                           StyleText(
                             text:
                                 "\$ ${value.purchasedList[index]['data'][5].toString()}",
-                                textSpace: 0,
-                                textSize: 16,
-                                textWeight: true,
+                            textSpace: 0,
+                            textSize: 16,
+                            textWeight: true,
                           ),
                           StyleText(
                             text:
                                 "Qty: ${value.purchasedList[index]['data'][6].toString()}",
-                                textSize: 16,
-                                textWeight: true,
+                            textSize: 16,
+                            textWeight: true,
                           ),
                         ],
                       ),
                       IconButton(
                         icon: Icon(Icons.delete),
-                        color: Colors.white,
+                        color: Colors.lightBlueAccent,
                         onPressed: () {
                           value.removeFromPurchasedList(
                             value.purchasedList[index]['data'][0],

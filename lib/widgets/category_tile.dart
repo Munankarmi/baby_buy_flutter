@@ -35,8 +35,22 @@ class _CategoryTileState extends State<CategoryTile> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(16),
         color: Colors.black87,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade500,
+            offset: Offset(4, 4),
+            blurRadius: 2,
+            spreadRadius: 1
+          ),
+          BoxShadow(
+            color: Colors.lightBlueAccent,
+            offset: Offset(-2, -2),
+            blurRadius: 2,
+            spreadRadius: 1
+          )
+        ]
       ),
       padding: EdgeInsets.all(8),
       margin: EdgeInsets.all(10),
