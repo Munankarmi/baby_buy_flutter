@@ -150,6 +150,7 @@ class _InsideHomePageState extends State<InsideHomePage> {
                                   showDialog(
                                     context: context,
                                     builder: (_) => AlertDialog(
+                                      backgroundColor: Colors.grey,
                                       title: StyleText(
                                         text: "Already purchased",
                                         textWeight: true,

@@ -91,13 +91,41 @@ class _CategoryPageState extends State<CategoryPage> {
                           ElevButtonStyle(
                             buttonText: "  Save  ",
                             buttonPressed: () {
-                              context.categoryProvider.saveCategory(
-                                categoryNameController.text,
-                                categoryDescpController.text,
-                              );
-                              categoryNameController.clear();
-                              categoryDescpController.clear();
-                              Navigator.pop(context);
+                              if (categoryNameController.text.isEmpty ||
+                                  categoryDescpController.text.isEmpty) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    backgroundColor: Colors.grey,
+                                    title: StyleText(
+                                      text: "Error !!!",
+                                      textSize: 40,
+                                      textWeight: true,
+                                      textColor: Colors.red,
+                                    ),
+                                    content: StyleText(
+                                      text: "Please fill all required text",
+                                      textColor: Colors.black,
+                                    ),
+                                    actions: [
+                                      ElevButtonStyle(
+                                        buttonText: " Okay ",
+                                        buttonPressed: () =>
+                                            Navigator.pop(context),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                                return;
+                              } else {
+                                context.categoryProvider.saveCategory(
+                                  categoryNameController.text,
+                                  categoryDescpController.text,
+                                );
+                                categoryNameController.clear();
+                                categoryDescpController.clear();
+                                Navigator.pop(context);
+                              }
                             },
                           ),
                         ],
@@ -113,7 +141,6 @@ class _CategoryPageState extends State<CategoryPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(12),
           side: BorderSide(color: Colors.white, width: 2),
-        
         ),
         child: Icon(Icons.add, color: Colors.lightBlueAccent),
       ),

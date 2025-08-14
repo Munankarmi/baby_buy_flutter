@@ -34,16 +34,17 @@ class _HomePageState extends State<HomePage> {
           text: "Baby Buy",
           textWeight: true,
           textSize: 30,
-          textColor: Colors.white,
+          textColor: Colors.lightBlueAccent,
         ),
         centerTitle: true,
         backgroundColor: Colors.black,
         elevation: 2,
         shadowColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.lightBlueAccent),
       ),
       drawer: SafeArea(
         child: Drawer(
+        shadowColor: Colors.lightBlueAccent,
           backgroundColor: Colors.black87,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,8 +68,7 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               SizedBox(height: 12),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   ElevButtonStyle(
                                     buttonText: "Gallery",
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              Divider(thickness: 1, color: Colors.white),
+              Divider(thickness: 1, color: Colors.lightBlueAccent),
               SizedBox(height: 30),
 
               TextButton.icon(
@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.category, size: 50, color: Colors.white),
               ),
               SizedBox(height: 30),
-              Divider(thickness: 1, color: Colors.white),
+              Divider(thickness: 1, color: Colors.lightBlueAccent),
               SizedBox(height: 20),
               TextButton.icon(
                 onPressed: () {
@@ -204,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(height: 20),
-              Divider(thickness: 1, color: Colors.white),
+              Divider(thickness: 1, color: Colors.lightBlueAccent),
               SizedBox(height: 50),
               TextButton.icon(
                 onPressed: () {

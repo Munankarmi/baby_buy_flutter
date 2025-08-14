@@ -42,15 +42,15 @@ class _CategoryTileState extends State<CategoryTile> {
             color: Colors.grey.shade500,
             offset: Offset(4, 4),
             blurRadius: 2,
-            spreadRadius: 1
+            spreadRadius: 1,
           ),
           BoxShadow(
             color: Colors.lightBlueAccent,
             offset: Offset(-2, -2),
             blurRadius: 2,
-            spreadRadius: 1
-          )
-        ]
+            spreadRadius: 1,
+          ),
+        ],
       ),
       padding: EdgeInsets.all(8),
       margin: EdgeInsets.all(10),
@@ -106,7 +106,7 @@ class _CategoryTileState extends State<CategoryTile> {
                     ),
                   );
                 },
-                icon: Icon(Icons.delete, color: Colors.white),
+                icon: Icon(Icons.delete, color: Colors.lightBlueAccent),
               ),
             ],
           ),
@@ -166,12 +166,39 @@ class _CategoryTileState extends State<CategoryTile> {
                               ElevButtonStyle(
                                 buttonText: "  Save  ",
                                 buttonPressed: () {
-                                  context.categoryProvider.editCategory(
-                                    widget.index,
-                                    categoryNameController.text,
-                                    categoryDescpController.text,
-                                  );
-                                  Navigator.pop(context);
+                                  if (categoryNameController.text.isEmpty ||
+                                      categoryDescpController.text.isEmpty) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog.adaptive(
+                                        backgroundColor: Colors.grey,
+                                        title: StyleText(
+                                          text: "Error !!!",
+                                          textColor: Colors.red, textWeight: true,textSize: 40,
+                                        ),
+                                        content: StyleText(
+                                          text:
+                                              "Please fill all requierd fields",
+                                          textColor: Colors.black,
+                                        ),
+                                        actions: [
+                                          ElevButtonStyle(
+                                            buttonText: " Okay ",
+                                            buttonPressed: () =>
+                                                Navigator.pop(context),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                    return;
+                                  } else {
+                                    context.categoryProvider.editCategory(
+                                      widget.index,
+                                      categoryNameController.text,
+                                      categoryDescpController.text,
+                                    );
+                                    Navigator.pop(context);
+                                  }
                                 },
                               ),
                             ],

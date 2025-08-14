@@ -1,3 +1,4 @@
+import 'package:baby_buy/pages/home_page.dart';
 import 'package:baby_buy/pages/splash_screen.dart';
 import 'package:baby_buy/providers/category_provider.dart';
 import 'package:baby_buy/providers/home_page_provider.dart';
@@ -21,7 +22,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => HomePageProvider()),
       ],
       child: MyApp(),
-    ),  
+    ),    
   );
 }
 

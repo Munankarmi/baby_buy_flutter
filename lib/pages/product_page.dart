@@ -199,26 +199,28 @@ class _ProductPageState extends State<ProductPage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            backgroundColor: Colors.grey,
-            builder: (context) {
-              return Padding(
-                padding: EdgeInsetsGeometry.all(20),
-                child: ProductFab(),
-              );
-            },
-          );
-        },
-        backgroundColor: Colors.black,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: Colors.white, width: 2)
+      floatingActionButton: SingleChildScrollView(
+        child: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.grey,
+              builder: (context) {
+                return Padding(
+                  padding: EdgeInsetsGeometry.only(left: 20, right: 20, top: 12, bottom: MediaQuery.of(context).viewInsets.bottom + 20),
+                  child: SingleChildScrollView(child: ProductFab()),
+                );
+              },
+            );
+          },
+          backgroundColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(color: Colors.white, width: 2)
+          ),
+          child: Icon(Icons.add, color: Colors.lightBlueAccent,),
         ),
-        child: Icon(Icons.add, color: Colors.lightBlueAccent,),
       ),
     );
   }
