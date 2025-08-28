@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
               Divider(thickness: 1, color: Colors.black),
               SizedBox(height: 30),
               Provider.of<SignProvider>(context).isLoading
-                  ? CircularProgressIndicator(color: Colors.black,)
+                  ? CircularProgressIndicator(color: Colors.black)
                   : SignButtonStyle(
                       text: "Sign-In",
                       onTap: () {

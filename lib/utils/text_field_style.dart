@@ -9,7 +9,7 @@ class TextFieldStyle extends StatelessWidget {
   const TextFieldStyle({
     this.kType = TextInputType.text,
     this.obsecureText = false,
-    this.textFieldSize = 12.0,
+    this.textFieldSize = 16.0,
     required this.hintText,
     required this.textController,
     super.key,
@@ -25,10 +25,10 @@ class TextFieldStyle extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: textFieldSize, horizontal: 8),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black),
+          borderSide: BorderSide(color: Colors.black, width: 2),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black),
+          borderSide: BorderSide(color: Colors.black, width: 2),
         ),
         fillColor: Colors.white,
         filled: true,

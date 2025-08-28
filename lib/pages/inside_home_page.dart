@@ -50,7 +50,7 @@ class _InsideHomePageState extends State<InsideHomePage> {
                         color: Colors.lightBlueAccent,
                         offset: Offset(-2, -2),
                         blurRadius: 1,
-                        spreadRadius: 1
+                        spreadRadius: 1,
                       ),
                     ],
                   ),
@@ -208,7 +208,10 @@ class _InsideHomePageState extends State<InsideHomePage> {
                             ),
 
                             IconButton(
-                              icon: Icon(Icons.delete, color: Colors.lightBlueAccent),
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.lightBlueAccent,
+                              ),
                               onPressed: () {
                                 productProvier.deleteProduct(index);
                               },
@@ -234,8 +237,10 @@ class _InsideHomePageState extends State<InsideHomePage> {
           );
         },
         backgroundColor: Colors.black,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(12),
-        side: BorderSide(color: Colors.white,width: 2)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(12),
+          side: BorderSide(color: Colors.white, width: 2),
+        ),
         child: Icon(Icons.card_travel, color: Colors.lightBlueAccent),
       ),
     );
